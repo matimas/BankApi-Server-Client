@@ -9,8 +9,8 @@ const UserDetails = () => {
 	useEffect(() => {
 		const importdData = async () => {
 			try {
-				const { data } = await myApi.get('/users');
-				console.log(data);
+				const response = await fetch('api/users');
+				const data = await response.json();
 				setClients(data);
 			} catch (error) {
 				console.log(error.message);
