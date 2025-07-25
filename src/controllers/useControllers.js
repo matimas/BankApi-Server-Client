@@ -26,7 +26,7 @@ const getClientById = async (req, res) => {
 
 const getActiveClient = async (req, res) => {
 	try {
-		const client = await Client.where('isActive').equals(true);
+		const client = await Client.find()// Client.where('isActive').equals(true);
 		res.status(200).send(client);
 	} catch (error) {
 		res.status(400).send(error.message);
@@ -65,11 +65,25 @@ const transfer = async (req, res) => {
 		res.status(400).send({ err: error.message });
 	}
 };
-
+const withdraw = async (req, res) => {
+	try {
+		const { id, amount } = req.body;
+		const client = await isUserExist(id);
+		if (!client) throw new Error('Invalid User try again');
+		const newAmount = client.cash - amount;
+		await Client.findByIdAndUpdate(id, {
+			$set: { cash: newAmount },
+		});
+		res.status(201).send({ message: 'client updated', client });
+	} catch (error) {
+		res.status(400).send({ err: error.message });
+	}
+};
 module.exports = {
 	addClients,
 	getClientById,
 	getActiveClient,
 	deposit,
 	transfer,
+	withdraw,
 };

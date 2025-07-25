@@ -24,48 +24,56 @@ const MoneyTransfer = () => {
 	return (
 		<Form
 			style={{
-				height: '84.7vh',
+				minHeight: '70vh',
 				display: 'flex',
 				flexDirection: 'column',
 				justifyContent: 'center',
-				paddingLeft: '10vw',
+				alignItems: 'center',
+				background: '#fff',
+				borderRadius: 12,
+				boxShadow: '0 2px 16px rgba(0,0,0,0.07)',
+				padding: 32,
+				maxWidth: 400,
+				margin: '40px auto',
 			}}
 			name='basic'
-			labelCol={{ span: 8 }}
-			wrapperCol={{ span: 16 }}
+			labelCol={{ span: 24 }}
+			wrapperCol={{ span: 24 }}
 			initialValues={{ remember: true }}
 			onFinish={onFinish}
 			onFinishFailed={onFinishFailed}
 			autoComplete='off'
 		>
-			<Form.Item style={{ textAlign: 'center', paddingLeft: '12vw' }}>
-				<Text style={{ fontSize: '45px' }}>Money Transfer</Text>
+			<Form.Item style={{ textAlign: 'center', width: '100%' }}>
+				<Text style={{ fontSize: '2.2rem', fontWeight: 700 }}>Money Transfer</Text>
 			</Form.Item>
 			<Form.Item
-				label='id'
+				label='From (ID)'
 				name='from'
-				rules={[{ required: true, message: 'Please input a id!' }]}
+				rules={[{ required: true, message: 'Please input a source id!' }]}
+				style={{ width: '100%' }}
 			>
-				<Input style={{ maxWidth: '300px' }} placeholder='from' />
+				<Input style={{ maxWidth: '100%' }} placeholder='from' />
 			</Form.Item>
 			<Form.Item
-				label='id'
+				label='To (ID)'
 				name='to'
-				rules={[{ required: true, message: 'Please input a id!' }]}
+				rules={[{ required: true, message: 'Please input a target id!' }]}
+				style={{ width: '100%' }}
 			>
-				<Input style={{ maxWidth: '300px' }} placeholder='to' />
+				<Input style={{ maxWidth: '100%' }} placeholder='to' />
 			</Form.Item>
-
 			<Form.Item
-				label='amount'
+				label='Amount'
 				name='amount'
 				rules={[{ required: true, message: 'Please input the amount!' }]}
+				style={{ width: '100%' }}
 			>
-				<Input style={{ maxWidth: '300px' }} />
+				<Input style={{ maxWidth: '100%' }} />
 			</Form.Item>
-			<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-				<Button type='primary' htmlType='submit'>
-					Action
+			<Form.Item style={{ width: '100%' }}>
+				<Button type='primary' htmlType='submit' block size='large'>
+					Transfer
 				</Button>
 			</Form.Item>
 		</Form>

@@ -22,6 +22,6 @@ apiRouter.put('/users/transfer', transfer);
 
 // apiRouter.delete('/delete-all', deleteAllProducts);
 
-// apiRouter.put('/update', updatedProduct);
+apiRouter.put('/users/withdraw', withdraw);
 
 module.exports = apiRouter;

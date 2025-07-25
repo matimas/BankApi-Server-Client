@@ -1,5 +1,5 @@
 {
-	"name": "herokuwithmordi",
+	"name": "server",
 	"version": "1.0.0",
 	"description": "",
 	"main": "app.js",
@@ -14,10 +14,14 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"axios": "^0.25.0",
+		"axios": "^1.11.0",
 		"cors": "^2.8.5",
 		"dotenv": "^14.2.0",
 		"express": "^4.17.2",
-		"mongoose": "^6.1.7"
+		"mongoose": "^6.1.7",
+		"react-router-dom": "^7.7.1"
+	},
+	"devDependencies": {
+		"eslint": "^9.31.0"
 	}
 }

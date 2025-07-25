@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Layout, Typography } from 'antd';
 import './App.css';
 import {
@@ -10,48 +10,46 @@ import {
 	Deposit,
 	Withdraw,
 	CreditUpdate,
+	LoginRegister,
 } from './components';
 
+const { Title } = Typography;
+
+
 const App = () => {
+	const location = useLocation();
+	const hideNavbar = location.pathname === '/login' || location.pathname === '/';
 	return (
 		<div className='app'>
-			<div className='navbar'>
-				<Navbar />
-			</div>
+			{/* סרגל ניווט */}
+			{!hideNavbar && (
+				<div className='navbar'>
+					<Navbar />
+				</div>
+			)}
 			<div className='main'>
 				<Layout>
 					<div className='routes'>
-						<Switch>
-							<Route exact path='/user-details'>
-								<UserDetails />
-							</Route>
-							<Route exact path='/create-user'>
-								<CreateUser />
-							</Route>
-							<Route exact path='/money-transfer'>
-								<MoneyTransfer />
-							</Route>
-							<Route exact path='/deposit'>
-								<Deposit />
-							</Route>
-							<Route exact path='/withdraw'>
-								<Withdraw />
-							</Route>
-							<Route exact path='/credit-update'>
-								<CreditUpdate />
-							</Route>
-						</Switch>
+						{/* ניהול הראוטים */}
+						<Routes>
+							<Route path='/login' element={<LoginRegister />} />
+							<Route path='/user-details' element={<UserDetails />} />
+							<Route path='/create-user' element={<CreateUser />} />
+							<Route path='/money-transfer' element={<MoneyTransfer />} />
+							<Route path='/deposit' element={<Deposit />} />
+							<Route path='/withdraw' element={<Withdraw />} />
+							<Route path='/credit-update' element={<CreditUpdate />} />
+							<Route path='/' element={<LoginRegister />} />
+						</Routes>
 					</div>
 				</Layout>
+				{/* פוטר */}
 				<div className='footer'>
-					<Typography.Title
-						level={5}
-						style={{ color: 'white', textAlign: 'center' }}
-					>
+					<Title level={5} style={{ color: 'white', textAlign: 'center' }}>
 						MatiBank
 						<br />
 						All rights reserved
-					</Typography.Title>
+					</Title>
 				</div>
 			</div>
 		</div>
